@@ -7,12 +7,12 @@ public class raycastShoot : MonoBehaviour
 
     public int gunDamage = 1;
     public float fireRate = .25f;
-    public float weaponRange = 50f;
+    public float weaponRange = 5000f;
     public float hitForce = 100f;
     public Transform gunEnd;
 
     public Camera mainCam;
-    private WaitForSeconds  shotDuration = new WaitForSeconds(.07f);
+    private WaitForSeconds shotDuration = new WaitForSeconds(.07f);
     public AudioSource gunAudio;
     private LineRenderer laserLine;
     private float nextFire;
@@ -37,9 +37,22 @@ public class raycastShoot : MonoBehaviour
 
           laserLine.SetPosition(0, gunEnd.position);
 
-          if (Physics.Raycast(rayOrigin, mainCam.transform.forward, out hit, weaponRange))
+          if (Physics.Raycast(rayOrigin, mainCam.transform.forward, out hit))
           {
             laserLine.SetPosition(1, hit.point);
+            Debug.Log(hit.collider.gameObject.name);
+            shootable health = hit.collider.GetComponent<shootable>();
+
+            if (health != null)
+            {
+              health.Damage(gunDamage);
+            }
+            if (hit.rigidbody != null)
+            {
+              hit.rigidbody.AddForce(-hit.normal * hitForce);
+            }
+
+
           }
           else
            {
@@ -56,7 +69,6 @@ public class raycastShoot : MonoBehaviour
       laserLine.enabled = true;
       yield return shotDuration;
       laserLine.enabled = false;
-
     }
 
 
