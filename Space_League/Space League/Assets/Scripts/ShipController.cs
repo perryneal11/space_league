@@ -11,6 +11,9 @@ public class ShipController : MonoBehaviour
     private Vector2 lookInput, screenCenter, mouseDistance;
     private float rollInput;
     private float rollSpeed = 200f, rollAccelaration = 2.5f;
+    public GameObject centerFlame;
+    public GameObject leftFlame;
+    public GameObject rightFlame;
 
 
     // Start is called before the first frame update
@@ -24,6 +27,16 @@ public class ShipController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
+
+      if(Input.GetKeyDown(KeyCode.W))
+        {
+        centerFlame.GetComponent<ParticleSystem>().Play();
+        leftFlame.GetComponent<ParticleSystem>().Play();
+        rightFlame.GetComponent<ParticleSystem>().Play();
+        }
+
+
         lookInput.x = Input.mousePosition.x;
         lookInput.y = Input.mousePosition.y;
 
