@@ -14,7 +14,7 @@ public class ShipController : MonoBehaviour
     public GameObject centerFlame;
     public GameObject leftFlame;
     public GameObject rightFlame;
-
+    public AudioSource thrustersound;
 
     // Start is called before the first frame update
     void Start()
@@ -24,17 +24,32 @@ public class ShipController : MonoBehaviour
         //Cursor.lockState = CursorLockMode.Confined;
     }
 
+    void Update(){
+      if(Input.GetKeyDown(KeyCode.W)){
+          if(!thrustersound.isPlaying){
+              thrustersound.Play();
+              Debug.Log("go");
+              centerFlame.GetComponent<ParticleSystem>().Play();
+              leftFlame.GetComponent<ParticleSystem>().Play();
+              rightFlame.GetComponent<ParticleSystem>().Play();
+          }
+      }
+      else if(Input.GetKeyUp(KeyCode.W)){
+        if(thrustersound.isPlaying){
+          thrustersound.Stop();
+          Debug.Log("stop");
+          centerFlame.GetComponent<ParticleSystem>().Stop();
+          leftFlame.GetComponent<ParticleSystem>().Stop();
+          rightFlame.GetComponent<ParticleSystem>().Stop();
+        }
+      }
+    }
+
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
 
 
-      if(Input.GetKeyDown(KeyCode.W))
-        {
-        centerFlame.GetComponent<ParticleSystem>().Play();
-        leftFlame.GetComponent<ParticleSystem>().Play();
-        rightFlame.GetComponent<ParticleSystem>().Play();
-        }
 
 
         lookInput.x = Input.mousePosition.x;

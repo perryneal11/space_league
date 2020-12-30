@@ -40,7 +40,6 @@ public class raycastShoot : MonoBehaviour
           if (Physics.Raycast(rayOrigin, mainCam.transform.forward, out hit))
           {
             laserLine.SetPosition(1, hit.point);
-            Debug.Log(hit.collider.gameObject.name);
             shootable health = hit.collider.GetComponent<shootable>();
 
             if (health != null)
