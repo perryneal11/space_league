@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ShipController : MonoBehaviour
 {
-    public float forwardSpeed = 200f, strafeSpeed = 7.5f, hoverSpeed = 50f;
+    public static float forwardSpeed = 200f, strafeSpeed = 7.5f, hoverSpeed = 50f;
     private float activeForwardSpeed, activeStrafeSpeed, activeHoverSpeed;
     private float forwardAccelaration = 2.5f, strafeAccelaration = 2f, hoverAccelaration =2f;
     public float lookRotateSpeed = 90f;
@@ -47,7 +47,7 @@ public class ShipController : MonoBehaviour
     void FixedUpdate()
     {
 
-
+        if (!UIManager.isMenuOpen){
 
 
         lookInput.x = Input.mousePosition.x;
@@ -67,6 +67,9 @@ public class ShipController : MonoBehaviour
         activeHoverSpeed = Mathf.Lerp(activeHoverSpeed, Input.GetAxis("Hover") * hoverSpeed, hoverAccelaration * Time.deltaTime);
 
         transform.position += transform.forward * activeForwardSpeed * Time.deltaTime + (transform.up * activeHoverSpeed * Time.deltaTime);
+      }
+
+
 
     }
 }

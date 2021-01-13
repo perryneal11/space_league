@@ -28,7 +28,7 @@ public class raycastShoot : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetButtonDown("Fire1") && Time.time > nextFire) {
+        if (Input.GetButtonDown("Fire1") && Time.time > nextFire && !UIManager.isMenuOpen) {
           nextFire = Time.time + fireRate;
           StartCoroutine(ShotEffect());
 
