@@ -28,7 +28,6 @@ public class ShipController : MonoBehaviour
       if(Input.GetKeyDown(KeyCode.W)){
           if(!thrustersound.isPlaying){
               thrustersound.Play();
-              Debug.Log("go");
               centerFlame.GetComponent<ParticleSystem>().Play();
               leftFlame.GetComponent<ParticleSystem>().Play();
               rightFlame.GetComponent<ParticleSystem>().Play();
@@ -37,7 +36,6 @@ public class ShipController : MonoBehaviour
       else if(Input.GetKeyUp(KeyCode.W)){
         if(thrustersound.isPlaying){
           thrustersound.Stop();
-          Debug.Log("stop");
           centerFlame.GetComponent<ParticleSystem>().Stop();
           leftFlame.GetComponent<ParticleSystem>().Stop();
           rightFlame.GetComponent<ParticleSystem>().Stop();

@@ -12,7 +12,7 @@ public class collisionController : MonoBehaviour
       if(healthBar)
       {
         healthBar.onTakeDamage(5);
-        Debug.Log("hit");
+
       }
     }
 
